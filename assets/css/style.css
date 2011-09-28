@@ -1,0 +1,25 @@
+/**
+ * Master stylesheet
+ *
+ * Basic styles and such defined. Theme specific styles
+ * should be stored in self contained directories to
+ * increase portability of files and themes.
+ */
+
+@import 'reset.css';
+
+html { 
+    font: 12px/18px helvetica, arial, sans-serif; 
+    color: #444; 
+    margin: 20px; 
+} 
+
+/* Documentation styles */
+h3.topicHeader {
+    font: bold 18px/24px helvetica, arial, sans-serif;
+    color: #444;
+    padding: 8px 8px 8px 0;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+p.topicContent { padding: 8px 0; }
