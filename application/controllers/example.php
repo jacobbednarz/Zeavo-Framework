@@ -13,5 +13,5 @@ class Example extends Application {
         
         $this->loadView('example_view', $data);
     }
-    
+
 }
