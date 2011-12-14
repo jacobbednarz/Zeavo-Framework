@@ -43,7 +43,7 @@ define('DIRECT_CHECK', 'cd9a2f417e4fe69a9884222643c4c91d');
 /**
  * Administrator options. These will be mainly used for debugging purposes only.
  */
-define('ADMIN_EMAIL', 'n.a.r.z.y@live.com');
+define('ADMIN_EMAIL', 'jacob.bednarz@gmail.com');
 
 /**
  * Environment variables for application
