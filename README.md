@@ -25,12 +25,6 @@ purposes. The planned additions are:
 
 1. Database query builder/Abstraction class
 2. Modules (all of which can be added or removed depending on your needs)
-	* Easy authentication
-	* User management
-	* Article management
-	* Unit testing
-	* Inventory management
-	* Downloads management
 3. Caching
 4. Decent documentation
 	* Will be based off the PHP DocBlocks but just easier to access then needing to 
