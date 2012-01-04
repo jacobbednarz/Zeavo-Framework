@@ -1,6 +1,6 @@
 ### Overview
 This framework is written for those who write applications and need a framework 
-that is modular, PHP5 based, adhears to the MVC pattern and has a focus on 
+that is modular, PHP5 based, adheres to the MVC pattern and has a focus on 
 performance. Zeavo Framework is intended to have a low learning curve and be 
 packed full of features all backed up with rock solid security.
 
