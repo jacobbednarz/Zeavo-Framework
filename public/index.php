@@ -1,5 +1,5 @@
 <?php
-
+ 
 /**
  * Zeavo Framework
  *
@@ -28,35 +28,74 @@
  * @version 1.0.0
  */
 
+class registry {
+    
+    const ERR_PROPERTY_NON_EXISTANT = 1;
+    public static $instance;
+    private $registry;
+    
+    public function __construct($registry) {
+        if (!is_array($registry)) {
+            $this->registry = array();
+        } else {
+            $this->registry = $registry;
+        }
+    }
+    
+    public static function getRegistry($registry = false) {
+        if (!isset(self::$instance)) {
+            self::$instance = new self($registry);
+        }
+        
+        return self::$instance;
+    }
+    
+    public function __get($property) {
+        if (isset($this->registry[$property])) {
+            return $this->registry[$property];
+        } else {
+            throw new Exception('Registry property does not exist.', self::ERR_PROPERTY_NON_EXISTANT);
+        }
+    }
+    
+    public function __set($property, $value) {
+        $this->registry[$property] = $value;
+    }
+}
+ 
 define('DS', DIRECTORY_SEPARATOR);
 define('APP_PATH', dirname(dirname(__FILE__)));
-
+ 
 require_once APP_PATH . DS . 'config' . DS . 'config.php';
-
+ 
 if (ENVIRONMENT == 'DEVELOPMENT') {
     error_reporting(E_ALL);
 } else {
     // TODO: Add email logging 
     error_reporting(0);
 }
-
+ 
 $url = $_SERVER['REQUEST_URI'];
 $url = str_replace('/zeavo_framework', '', $url);
-	
+ 
 /**
  * Grab the URL and break it into more usable pieces 
  */
 $array_tmp_uri = preg_split('[\\/]', $url, -1, PREG_SPLIT_NO_EMPTY);
-
+ 
 @$array_uri['controller'] = $array_tmp_uri[0];
 @$array_uri['method'] = $array_tmp_uri[1]; 
 @$array_uri['vars'] = array_slice($array_tmp_uri, 2);
-	
+
+// Get the singleton pattern ready and setup the URI
+$r = registry::getRegistry();
+$r->uri = $array_uri;
+ 
 /**
  * Include the application bootstrap. Magic happens here! 
  */
 require_once APP_PATH . DS . 'library' . DS . 'bootstrap.php';
-	
+ 
 /**
  * Create a new instance of the application
  */
