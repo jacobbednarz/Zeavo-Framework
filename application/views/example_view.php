@@ -6,8 +6,11 @@
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 </head>
 <body>
-    <h1><?php echo $pageHeader; ?></h1>
-    <p><?php echo $welcomeParagraph; ?></p>
-    <p>This file is <code>example_view.php</code> from <code>application/views</code> directory.</p>
+	
+<h1><?php echo $pageHeader; ?></h1>
+<p><?php echo $welcomeParagraph; ?></p>
+<p>This file is <code>example_view.php</code> from <code>application/views</code> directory.</p>
+<p>Query string: <?php echo $queryString; ?>
+	
 </body>
 </html>
