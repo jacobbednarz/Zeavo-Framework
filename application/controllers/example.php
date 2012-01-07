@@ -21,7 +21,7 @@ class Example extends Application {
          *  Output: var2
          */
         $r = registry::getRegistry();
-        $data['queryString'] = $r->uri['vars'][0]; 
+        $data['queryString'] = @$r->uri['vars'][0]; 
 
         // Load the required view
         $this->loadView('example_view', $data);

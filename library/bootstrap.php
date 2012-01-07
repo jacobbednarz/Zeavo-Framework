@@ -62,7 +62,7 @@ class Application {
         $controller = new $class();
         
         if (method_exists($controller, $this->uri['method'])) {
-            $controller->{$this->uri['method']}($this->uri['var']);
+            $controller->{$this->uri['method']}($this->uri['vars']);
         } else {
             $controller->index();	
         }
