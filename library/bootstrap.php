@@ -3,7 +3,7 @@
 /**
  * Zeavo Framework
  *
- * Copyright (c) 2011 by Zeavo
+ * Copyright (c) 2012 by Zeavo
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,39 +38,40 @@ class Application {
     /**
      * Plain old constructor method
      */
-    function __construct($uri) {
+    function __construct($uri) 
+    {
         $this->uri = $uri;
     }
 
     /**
-     * loadController
-     *
      * Used for loading controller files from the controller directory.
      *
      * @access public
      * @param string $class The name of the controller class you wish to load.
      * @since 1.0.0
      */
-    public function loadController($class) {
+    public function load_controller($class) 
+    {
         $file = APP_PATH . DS . 'application' . DS . 'controllers' . DS . $this->uri['controller'] . '.php';
         
         // Make sure the file exists prior to attempting use of it
-        if (!file_exists($file)) die();
+        if ( ! file_exists($file)) die();
         
         require_once $file;
         
         $controller = new $class();
         
-        if (method_exists($controller, $this->uri['method'])) {
+        if (method_exists($controller, $this->uri['method'])) 
+        {
             $controller->{$this->uri['method']}($this->uri['vars']);
-        } else {
+        }
+        else
+        {
             $controller->index();	
         }
     }
 
     /**
-     * loadView
-     *
      * Method for loading views as well as passing data from the controller.
      *
      * @access public
@@ -78,8 +79,10 @@ class Application {
      * @param array $vars An array of information you wish to pass to the view file to utilise within the file.
      * @since 1.0.0
      */
-    public function loadView($view, $vars = '') {
-        if (is_array($vars) && count($vars) > 0) {
+    public function load_view($view, $vars = '') 
+    {
+        if (is_array($vars) && count($vars) > 0) 
+        {
             extract($vars, EXTR_PREFIX_SAME, "wddx");
         }
         
@@ -87,15 +90,14 @@ class Application {
     }
 
     /**
-     * loadModel
-     *
      * Load and instantiate model file/class for use within the application
      *
      * @access public
      * @param string $model The name of the model file to use.
      * @todo [JB 21-09-11] This probably shouldn't be as open as it is - lock it down a little more. 
      */
-    public function loadModel($model) {
+    public function load_model($model) 
+    {
         require_once APP_PATH . DS . 'application' . DS . 'models' . DS . $model . '.php';
         $this->$model = new $model;
     }

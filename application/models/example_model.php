@@ -1,8 +1,9 @@
 <?php
 	
-class model_blog extends Application {
+class Model_Example extends Application {
     
-    function __construct() {
+    function __construct() 
+    {
         // Link to DB, tables, etc.
     }
 

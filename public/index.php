@@ -3,7 +3,7 @@
 /**
  * Zeavo Framework
  *
- * Copyright (c) 2011 by Zeavo
+ * Copyright (c) 2012 by Zeavo
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,31 +34,41 @@ class registry {
     public static $instance;
     private $registry;
     
-    public function __construct($registry) {
-        if (!is_array($registry)) {
+    public function __construct($registry)
+    {
+        if ( ! is_array($registry)) 
+        {
             $this->registry = array();
-        } else {
+        }
+        else
+        {
             $this->registry = $registry;
         }
     }
     
-    public static function getRegistry($registry = false) {
-        if (!isset(self::$instance)) {
+    public static function get_registry($registry = false) 
+    {
+        if ( ! isset(self::$instance)) 
+        {
             self::$instance = new self($registry);
         }
-        
         return self::$instance;
     }
     
-    public function __get($property) {
-        if (isset($this->registry[$property])) {
+    public function __get($property) 
+    {
+        if (isset($this->registry[$property]))
+        {
             return $this->registry[$property];
-        } else {
+        } 
+        else
+        {
             throw new Exception('Registry property does not exist.', self::ERR_PROPERTY_NON_EXISTANT);
         }
     }
     
-    public function __set($property, $value) {
+    public function __set($property, $value)
+    {
         $this->registry[$property] = $value;
     }
 }
@@ -68,9 +78,12 @@ define('APP_PATH', dirname(dirname(__FILE__)));
  
 require_once APP_PATH . DS . 'config' . DS . 'config.php';
  
-if (ENVIRONMENT == 'DEVELOPMENT') {
+if (ENVIRONMENT == 'DEVELOPMENT') 
+{
     error_reporting(E_ALL);
-} else {
+}
+else
+{
     // TODO: Add email logging 
     error_reporting(0);
 }
@@ -88,7 +101,7 @@ $array_tmp_uri = preg_split('[\\/]', $url, -1, PREG_SPLIT_NO_EMPTY);
 @$array_uri['vars'] = array_slice($array_tmp_uri, 2);
 
 // Get the singleton pattern ready and setup the URI
-$r = registry::getRegistry();
+$r = registry::get_registry();
 $r->uri = $array_uri;
  
 /**
@@ -100,4 +113,4 @@ require_once APP_PATH . DS . 'library' . DS . 'bootstrap.php';
  * Create a new instance of the application
  */
 $application = new Application($array_uri);
-$application->loadController($array_uri['controller']);
+$application->load_controller($array_uri['controller']);
