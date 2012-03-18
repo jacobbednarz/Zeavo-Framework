@@ -112,5 +112,13 @@ require_once APP_PATH . DS . 'library' . DS . 'bootstrap.php';
 /**
  * Create a new instance of the application
  */
-$application = new Application($array_uri);
-$application->load_controller($array_uri['controller']);
+if ($array_uri['controller'] == '') 
+{
+    header('Location: ./' . DEFAULT_CONTROLLER);
+    exit;
+}
+else
+{
+    $application = new Application($array_uri);
+    $application->load_controller($array_uri['controller']);
+}
