@@ -49,3 +49,8 @@ define('ADMIN_EMAIL', 'jacob.bednarz@gmail.com');
  * Environment variables for application
  */
 define('ENVIRONMENT', 'DEVELOPMENT');
+
+/**
+ * Default controller to load
+ */
+define('DEFAULT_CONTROLLER', 'welcome');
